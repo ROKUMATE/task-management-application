@@ -9,6 +9,7 @@ export async function DELETE(request: NextRequest) {
         // delete given task id
         const reqBody = await request.json();
         const { id } = reqBody;
+        console.log('id ', id);
         const task = await Task.findByIdAndDelete(id);
         if (!task) {
             return NextResponse.json({
