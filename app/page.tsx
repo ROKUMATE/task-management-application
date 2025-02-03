@@ -1,7 +1,5 @@
 'use client';
 import { useEffect } from 'react';
-import AddTask from '@/components/AddTask';
-import TaskList from '@/components/TaskList';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { FaPlus } from 'react-icons/fa';
