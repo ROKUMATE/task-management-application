@@ -1,7 +1,6 @@
 'use client';
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import Image from 'next/image';
 import { FaPlus } from 'react-icons/fa';
 import {
     Table,

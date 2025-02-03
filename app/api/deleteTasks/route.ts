@@ -34,6 +34,7 @@ export async function DELETE(request: NextRequest) {
             body: {
                 success: false,
                 message: 'Internal Server Error',
+                error: error,
             },
         });
     }

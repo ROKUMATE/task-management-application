@@ -1,10 +1,10 @@
 import { dbConnect } from '@/dbConfig/dbConfig';
 import Task from '@/models/task.models';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 dbConnect();
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
     try {
         const reqBody = await request.json();
         console.log(reqBody);
@@ -38,6 +38,7 @@ export async function POST(request: Request) {
             body: {
                 success: false,
                 message: 'Internal Server Error',
+                error: error,
             },
         });
     }

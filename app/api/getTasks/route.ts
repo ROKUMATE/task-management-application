@@ -22,6 +22,7 @@ export async function GET(request: NextRequest) {
             body: {
                 success: false,
                 message: 'Internal Server Error',
+                error: error,
             },
         });
     }
