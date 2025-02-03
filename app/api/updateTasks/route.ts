@@ -38,7 +38,6 @@ export async function PUT(request: NextRequest) {
             });
         }
     } catch (error) {
-        console.log(error);
         return NextResponse.json({
             status: 500,
             body: {

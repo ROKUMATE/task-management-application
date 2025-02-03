@@ -7,10 +7,7 @@ dbConnect();
 export async function POST(request: NextRequest) {
     try {
         const reqBody = await request.json();
-        console.log(reqBody);
         const { person, title, description, dueDate } = reqBody;
-
-        console.log(dueDate);
 
         const newTask = new Task({
             person,
@@ -21,7 +18,6 @@ export async function POST(request: NextRequest) {
         });
 
         const savedTask = await newTask.save();
-        console.log(savedTask);
 
         return NextResponse.json({
             status: 200,
@@ -32,7 +28,6 @@ export async function POST(request: NextRequest) {
             },
         });
     } catch (error) {
-        console.log(error);
         return NextResponse.json({
             status: 500,
             body: {

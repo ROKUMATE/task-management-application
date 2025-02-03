@@ -1,5 +1,5 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { FaPlus } from 'react-icons/fa';
 import {
@@ -11,7 +11,6 @@ import {
     TableHeader,
     TableRow,
 } from '@/components/ui/table';
-import { useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Terminal } from 'lucide-react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
@@ -44,7 +43,6 @@ export default function Home() {
     const getAllTasks = async () => {
         try {
             const response = await axios.get(`/api/getTasks`);
-            console.log(response);
             setTasks(response.data.body.data);
         } catch (error) {
             console.error('Error:', error);
@@ -69,7 +67,7 @@ export default function Home() {
         }
 
         try {
-            const response = await axios.post(
+            await axios.post(
                 '/api/createTasks',
                 {
                     person: newTask.person,
@@ -83,7 +81,6 @@ export default function Home() {
                     },
                 }
             );
-            console.log('Success:', response.data);
         } catch (error) {
             console.error('Error:', error);
         }
@@ -127,10 +124,9 @@ export default function Home() {
 
     const handleDeleteTask = async (id: string) => {
         try {
-            const response = await axios.delete('/api/deleteTasks', {
+            await axios.delete('/api/deleteTasks', {
                 data: { id },
             });
-            console.log('Deleted response:', response.data);
             getAllTasks();
         } catch (error) {
             console.error('Error deleting task:', error);
@@ -138,6 +134,7 @@ export default function Home() {
     };
 
     const handleEditTask = async (id: string, updates: Partial<Task>) => {
+        // const updates
         try {
             await axios.put(
                 '/api/updateTasks',
@@ -204,7 +201,7 @@ export default function Home() {
                 </div>
             </div>
             <Table>
-                <TableCaption>A list of your tasks.</TableCaption>
+                <TableCaption>Made my Rokum.</TableCaption>
                 <TableHeader>
                     <TableRow>
                         <TableHead className="text-left">Person</TableHead>
@@ -249,6 +246,16 @@ export default function Home() {
                                                     'Enter new title',
                                                     task.title
                                                 ) || task.title,
+                                            description:
+                                                prompt(
+                                                    'Enter new description',
+                                                    task.description
+                                                ) || task.description,
+                                            dueDate:
+                                                prompt(
+                                                    'Enter new due date in the format dd-mm-yyyy',
+                                                    task.dueDate
+                                                ) || task.dueDate,
                                         })
                                     }>
                                     Edit
